@@ -40,11 +40,37 @@
 }
 
 #modernScrollTopBtn {
-  bottom: 85px;
+  top: 50%;  /* تغيير من bottom إلى top */
+  transform: translateY(-120px) scale(0.8) translateY(10px);
 }
 
 #modernScrollBottomBtn {
-  bottom: 20px;
+  top: 50%;  /* تغيير من bottom إلى top */
+  transform: translateY(-50px) scale(0.8) translateY(10px);
+}
+
+#modernScrollTopBtn.show {
+  transform: translateY(-120px) scale(1) translateY(0);
+}
+
+#modernScrollBottomBtn.show {
+  transform: translateY(-50px) scale(1) translateY(0);
+}
+
+#modernScrollTopBtn:hover, #modernScrollBottomBtn:hover {
+  transform: translateY(-120px) scale(1.1); /* تحديث للزر العلوي */
+}
+
+#modernScrollBottomBtn:hover {
+  transform: translateY(-50px) scale(1.1); /* تحديث للزر السفلي */
+}
+
+#modernScrollTopBtn:active {
+  transform: translateY(-120px) scale(0.95);
+}
+
+#modernScrollBottomBtn:active {
+  transform: translateY(-50px) scale(0.95);
 }
 
 /* Progress indicator */
@@ -107,18 +133,18 @@
   opacity: 1;
 }
 
-
-/* Adjust position for specific sites if needed */
-body.has-fixed-bottom #modernScrollBottomBtn {
-  bottom: 70px !important;
+/* Settings control classes */
+.hidden {
+  display: none !important;
 }
 
-/* Reduce opacity when near edges */
-#modernScrollTopBtn.near-edge, 
-#modernScrollBottomBtn.near-edge {
-  opacity: 0.6 !important;
+.no-progress-ring .scroll-progress-ring {
+  display: none !important;
 }
 
+.no-tooltip .scroll-button-tooltip {
+  display: none !important;
+}
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
@@ -130,7 +156,27 @@ body.has-fixed-bottom #modernScrollBottomBtn {
   }
   
   #modernScrollTopBtn {
-    bottom: 80px;
+    transform: translateY(-110px) scale(0.8) translateY(10px);
+  }
+  
+  #modernScrollBottomBtn {
+    transform: translateY(-45px) scale(0.8) translateY(10px);
+  }
+  
+  #modernScrollTopBtn.show {
+    transform: translateY(-110px) scale(1) translateY(0);
+  }
+  
+  #modernScrollBottomBtn.show {
+    transform: translateY(-45px) scale(1) translateY(0);
+  }
+  
+  #modernScrollTopBtn:hover {
+    transform: translateY(-110px) scale(1.1);
+  }
+  
+  #modernScrollBottomBtn:hover {
+    transform: translateY(-45px) scale(1.1);
   }
   
   .scroll-button-tooltip {
@@ -144,17 +190,4 @@ body.has-fixed-bottom #modernScrollBottomBtn {
     background: linear-gradient(135deg, #8a2be2 0%, #4a00e0 100%);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
-}
-
-/* Settings control classes */
-.hidden {
-  display: none !important;
-}
-
-.no-progress-ring .scroll-progress-ring {
-  display: none !important;
-}
-
-.no-tooltip .scroll-button-tooltip {
-  display: none !important;
 }

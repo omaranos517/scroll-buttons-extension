@@ -1,7 +1,6 @@
 // Modern Scroll Buttons Extension
 // Handles both window scrolling and scrollable divs
 
-  
 class ModernScrollButtons {
   constructor() {
     this.scrollTopBtn = null;
@@ -447,7 +446,7 @@ class ModernScrollButtons {
     document.addEventListener('keydown', this.handleKeyDownBound);
 
     // Update button positions
-    this.updateButtonPositions();
+    // this.updateButtonPositions();
   }
 
   removeEventListeners() {
@@ -460,6 +459,7 @@ class ModernScrollButtons {
     }
   }
 
+  /*
   updateButtonPositions() {
     // Check for fixed elements that might overlap
     const fixedElements = document.querySelectorAll('*');
@@ -482,6 +482,7 @@ class ModernScrollButtons {
       this.scrollBottomBtn.style.bottom = `${maxBottom}px`;
     }
   }
+  */
 
     handleKeyDown(e) {
     // Check if shortcuts are enabled
