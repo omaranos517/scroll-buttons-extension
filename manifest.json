@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Scroll Buttons",
+  "name": "Modern Scroll Buttons",
   "version": "1.0",
-  "description": "Adds Scroll to Top and Bottom buttons to every page.",
+  "description": "scroll to top/bottom buttons in every page",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

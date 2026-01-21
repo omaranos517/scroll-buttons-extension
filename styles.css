@@ -9,7 +9,7 @@
   color: white;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 2147483647;
+  z-index: 2147483647 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,6 +106,19 @@
 #modernScrollBottomBtn:hover .scroll-button-tooltip {
   opacity: 1;
 }
+
+
+/* Adjust position for specific sites if needed */
+body.has-fixed-bottom #modernScrollBottomBtn {
+  bottom: 70px !important;
+}
+
+/* Reduce opacity when near edges */
+#modernScrollTopBtn.near-edge, 
+#modernScrollBottomBtn.near-edge {
+  opacity: 0.6 !important;
+}
+
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
