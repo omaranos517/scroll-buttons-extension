@@ -1,3 +1,7 @@
+<p align="right">
+    <img height="32" style="margin: 20px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"/>
+</p>
+
 # 🚀 Scroll Buttons Extension (in development)
 
 A lightweight **Chrome extension** that adds floating buttons to quickly  
