@@ -127,6 +127,7 @@ class ModernScrollButtons {
     const scale = isShowing ? 'scale(1)' : 'scale(0.8)';
     const opacity = isShowing ? '0.9' : '0';
     
+    // *! Apply and Change the position of the buttons
     switch(this.settings.position) {
       case 'middle-right':
         topBtn.style.top = '50%';
@@ -258,14 +259,17 @@ class ModernScrollButtons {
     document.addEventListener('keydown', this.handleKeyDownBound);
 
     // Mouse move to show buttons temporarily
+    // *? in the future the user can move the mouse to show the buttons if he wants by enabling this from the settings
+    /*
     document.addEventListener('mousemove', (e) => {
       if (this.settings.autoHide && (e.clientX > window.innerWidth - 100 || e.clientY < 100)) {
         this.showButtons();
         this.startHideTimer();
       }
     });
+    */
 
-    // Keep buttons visible when hovering over them
+    // *! Keep buttons visible when hovering over them
     if (this.scrollTopBtn) {
       this.scrollTopBtn.addEventListener('mouseenter', () => {
         this.showButtons();
@@ -475,19 +479,19 @@ class ModernScrollButtons {
       return;
     }
     
-    // النقر المفرد
+    // Single click
     this.lastClickTime = now;
     this.lastClickDirection = direction;
     this.clickCount = 1;
     
-    // تنظيف المؤقت السابق
+    // Clear any existing click timer
     clearTimeout(this.clickTimer);
     
-    // بدء مؤقت للنقر المزدوج
+    // Start a new click timer
     this.clickTimer = setTimeout(() => {
-      // إذا لم يكن هناك نقر مزدوج خلال 300 مللي ثانية
+      // ** If there is no double-click within 300 milliseconds
       if (this.clickCount === 1) {
-        // نقر مفرد: بدء التمرير المستمر
+        // ** Single click: Start auto-scroll
         console.log(`ModernScrollButtons: Single click detected - ${direction}`);
         this.startAutoScroll(direction);
       }
@@ -496,13 +500,15 @@ class ModernScrollButtons {
   }
 
   startAutoScroll(direction) {
-    // إيقاف أي تمرير مستمر سابق
+    // Stop any existing auto-scroll
     this.stopAutoScroll();
     
     console.log(`ModernScrollButtons: Starting auto scroll ${direction}`);
     
     this.isAutoScrolling = true;
     this.scrollSpeed = 15; // سرعة ابتدائية أبطأ
+
+    // *? in the future the user can enable acceleration by enabling this from the settings or turning it off
     
     // إضافة مؤشر للتمرير المستمر
     this.indicateAutoScrolling(direction);
@@ -510,6 +516,7 @@ class ModernScrollButtons {
     // تحديد مدة كل إطار
     const frameDuration = 1000 / 60; // 60fps
     
+    // Accelerate scrolling
     const scrollStep = () => {
       if (!this.isAutoScrolling) return;
       
