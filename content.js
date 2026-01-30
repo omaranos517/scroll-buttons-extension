@@ -725,7 +725,7 @@ class ModernScrollButtons {
       console.error('ModernScrollButtons: Error scrolling to bottom:', e);
     }
   }
-
+  
   updateButtons = () => {
     if (this.animationFrameId) {
       cancelAnimationFrame(this.animationFrameId);
@@ -740,37 +740,36 @@ class ModernScrollButtons {
         this.hideButtons();
         return;
       }
-      
-      // Calculate scroll percentage
-      const scrollPercentage = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
-      
-      // Update progress indicator
-      const circumference = 125.6;
-      const offset = circumference - (scrollPercentage * circumference);
-      
+
+      // **حساب النسبة بشكل مضبوط**
+      let scrollPercentage = scrollTop / maxScroll;
+      scrollPercentage = Math.min(Math.max(scrollPercentage, 0), 1); // تضمن 0–1
+
+      // **لتحريك الحلقة بشكل صحيح**
+      const circumference = 2 * Math.PI * 22; // نفس نصف القطر الموجود في SVG
+      const offset = circumference * (1 - scrollPercentage); // 0 عند الأعلى، كامل عند الأسفل
+
       const progressFills = document.querySelectorAll('.scroll-progress-fill');
       progressFills.forEach(circle => {
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
         circle.style.strokeDashoffset = offset;
       });
-      
-      // Show/hide top button based on scroll position
+
+      // باقي الكود زي ما هو
       if (scrollTop > 100) {
         this.scrollTopBtn.classList.add('show');
       } else {
         this.scrollTopBtn.classList.remove('show');
       }
       
-      // Show/hide bottom button based on scroll position
       const distanceFromBottom = Math.max(0, scrollHeight - (scrollTop + clientHeight));
       if (distanceFromBottom > 50) {
         this.scrollBottomBtn.classList.add('show');
       } else {
         this.scrollBottomBtn.classList.remove('show');
       }
-      
-      // Update position for animation
+
       this.updatePosition();
-      
       this.lastScrollHeight = scrollHeight;
     });
   }

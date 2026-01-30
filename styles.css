@@ -21,6 +21,8 @@
   transform: scale(0.8) translateY(10px);
   pointer-events: none;
   padding: 0;
+  -webkit-tap-highlight-color: transparent; /* Chrome, Safari, iOS */
+  outline: none; /* Firefox و متصفحات أخرى */
 }
 
 #modernScrollTopBtn.show, #modernScrollBottomBtn.show {
